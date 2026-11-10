@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios'; 
 
-function TodosList() {
+export default function TodosList() {
   const [todos, setTodos] = React.useState([]);
   const [search, setSearch] = React.useState('');
 
@@ -44,4 +44,4 @@ function TodosList() {
             </table>
         </div>
     );
-}    
+} 
