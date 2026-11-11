@@ -1,15 +1,21 @@
 import React from 'react';
 import axios from 'axios'; 
+import { useDispatch,useSelector } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { setTodos } from '../Redux/actions';
+
 
 export default function TodosList() {
-  const [todos, setTodos] = React.useState([]);
-  const [search, setSearch] = React.useState('');
+  const todos = useSelector((state) => state.todos);
+  const dispatch = useDispatch();
+  const [search, setSearch] = useState("");
 
-    React.useEffect(() => {
+
+    useEffect(() => {
         axios.get('https://jsonplaceholder.typicode.com/todos')
-            .then((response) => setTodos(response.data))
+            .then((response) => dispatch(setTodos(response.data)))
             .catch((error) => console.error('Erreur lors de la récupération des tâches :', error));
-    }, []);
+    }, [dispatch]);
 
     const filteredTodos = todos.filter((todo) =>
         todo.title.toLowerCase().includes(search.toLowerCase())

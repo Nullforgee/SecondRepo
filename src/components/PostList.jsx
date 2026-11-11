@@ -1,14 +1,18 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { setPosts } from "../Redux/actions";
 export default function PostList() {
-    const [posts, setPosts] = useState([]);
+    const posts = useSelector((state) => state.posts);
     const [search, setSearch] = useState("");
+    const dispatch = useDispatch();
+
 
     useEffect(() => {
         axios.get("https://jsonplaceholder.typicode.com/posts")
-            .then((response) => setPosts(response.data))
-            .catch((error) => console.error("Erreur lors de la récupération des posts :", error));
-    }, []);
+            .then((response) => dispatch(setPosts(response.data)))
+            .catch((error) => console.error("Erreur lors de la récupération des publications :", error));
+    }, [dispatch]);
 
     const filteredPosts = posts.filter((post) =>
         post.title.toLowerCase().includes(search.toLowerCase()) ||

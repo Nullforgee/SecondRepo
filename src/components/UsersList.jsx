@@ -1,14 +1,20 @@
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import {useDispatch} from "react-redux";
+import { setUsers } from "../Redux/actions";
 
 export default function UsersList() {
-    const [users, setUsers] = useState([]);
+    const users = useSelector((state) => state.users);
     const [search, setSearch] = useState("");
+
+    const dispatch = useDispatch();
+
 
     useEffect(() => {
         fetch("https://jsonplaceholder.typicode.com/users")
             .then((response) => response.json())
-            .then((data) => setUsers(data));
-    }, []);
+            .then((data) => dispatch(setUsers(data)));
+    }, [dispatch]);
 
     const filteredUsers = users.filter((user) =>
         user.name.toLowerCase().includes(search.toLowerCase()) ||
