@@ -12,7 +12,7 @@ function SummaryCards() {
   const balance = budget - totalExpenses;
 
   return (
-    <div>
+     <div className="summary-cards">
       <div>
         <h2>💰 Budget total</h2>
         <p>{budget} DH</p>

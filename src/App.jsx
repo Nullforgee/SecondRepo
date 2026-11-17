@@ -6,14 +6,14 @@ import ExpenseForm from "./components/ExpenseForm";
 import ExpenseTable from "./components/ExpenseTable";
 function App() {
   return (
-    <div>
-  <Header />
-  <SummaryCards />
-  <BudgetForm />
-  <ExpenseForm />
-  <ExpenseTable />
-</div>
-  );
+  <div className="container">
+    <Header />
+    <SummaryCards />
+    <BudgetForm />
+    <ExpenseForm />
+    <ExpenseTable />
+  </div>
+);
 }
 
 export default App;
